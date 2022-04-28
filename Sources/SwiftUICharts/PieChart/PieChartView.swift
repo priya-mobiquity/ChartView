@@ -61,7 +61,7 @@ public struct PieChartView : View {
                         .imageScale(.large)
                         .foregroundColor(self.style.legendTextColor)
                 }.padding()
-                PieChartRow(data: data, backgroundColor: self.style.backgroundColor, accentColor: self.style.accentColor, showValue: $showValue, currentValue: $currentValue)
+                PieChartRow(data: data, backgroundColor: self.style.backgroundColor, accentColor: [self.style.accentColor], showValue: $showValue, currentValue: $currentValue)
                     .foregroundColor(self.style.accentColor).padding(self.legend != nil ? 0 : 12).offset(y:self.legend != nil ? 0 : -10)
                 if(self.legend != nil) {
                     Text(self.legend!)

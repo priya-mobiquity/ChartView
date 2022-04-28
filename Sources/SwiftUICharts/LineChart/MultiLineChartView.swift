@@ -49,7 +49,7 @@ public struct MultiLineChartView: View {
     public init(data: [([Double], GradientColor)],
                 title: String,
                 legend: String? = nil,
-                style: ChartStyle = Styles.lineChartStyleOne,
+                style: ChartStyle = Styles.lineChartStyleOneLight,
                 form: CGSize = ChartForm.medium,
                 rateValue: Int? = nil,
                 dropShadow: Bool = true,
@@ -74,7 +74,7 @@ public struct MultiLineChartView: View {
                 .frame(width: frame.width, height: 240, alignment: .center)
                 .shadow(radius: self.dropShadow ? 8 : 0)
             VStack(alignment: .leading){
-                if(!self.showIndicatorDot){
+                if !self.showIndicatorDot {
                     VStack(alignment: .leading, spacing: 8){
                         Text(self.title)
                             .font(.title)
@@ -112,12 +112,13 @@ public struct MultiLineChartView: View {
                     ZStack{
                         ForEach(0..<self.data.count, id: \.self) { i in
                             Line(data: self.data[i],
+                                 currentValue: .constant("$3.16"),
                                  frame: .constant(geometry.frame(in: .local)),
                                  touchLocation: self.$touchLocation,
                                  showIndicator: self.$showIndicatorDot,
                                  minDataValue: .constant(self.globalMin),
                                  maxDataValue: .constant(self.globalMax),
-                                 showBackground: false,
+                                 showBackground: .constant(false),
                                  gradient: self.data[i].getGradient(),
                                  index: i)
                         }
@@ -130,9 +131,9 @@ public struct MultiLineChartView: View {
         }
         .gesture(DragGesture()
         .onChanged({ value in
-//            self.touchLocation = value.location
-//            self.showIndicatorDot = true
-//            self.getClosestDataPoint(toPoint: value.location, width:self.frame.width, height: self.frame.height)
+            self.touchLocation = value.location
+            self.showIndicatorDot = true
+            self.getClosestDataPoint(toPoint: value.location, width:self.frame.width, height: self.frame.height)
         })
             .onEnded({ value in
                 self.showIndicatorDot = false
@@ -140,18 +141,19 @@ public struct MultiLineChartView: View {
         )
     }
     
-//    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
-//        let points = self.data.onlyPoints()
-//        let stepWidth: CGFloat = width / CGFloat(points.count-1)
-//        let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
-//
-//        let index:Int = Int(round((toPoint.x)/stepWidth))
-//        if (index >= 0 && index < points.count){
-//            self.currentValue = points[index]
-//            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
-//        }
-//        return .zero
-//    }
+    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
+        let allPoints = data.map { $0.onlyPoints() }
+        let points = allPoints[0]
+        let stepWidth: CGFloat = width / CGFloat(points.count-1)
+        let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
+
+        let index:Int = Int(round((toPoint.x)/stepWidth))
+        if (index >= 0 && index < points.count){
+            self.currentValue = points[index]
+            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
+        }
+        return .zero
+    }
 }
 
 struct MultiWidgetView_Previews: PreviewProvider {

@@ -9,18 +9,46 @@
 import SwiftUI
 
 public struct Line: View {
-    @ObservedObject var data: ChartData
-    @Binding var frame: CGRect
-    @Binding var touchLocation: CGPoint
-    @Binding var showIndicator: Bool
-    @Binding var minDataValue: Double?
-    @Binding var maxDataValue: Double?
+    @ObservedObject public var data: ChartData
+    @Environment(\.colorScheme) var colorScheme
+    @Binding public var frame: CGRect
+    @Binding public var currentValue: String
+    @Binding public var touchLocation: CGPoint
+    @Binding public var showIndicator: Bool
+    @Binding public var minDataValue: Double?
+    @Binding public var maxDataValue: Double?
     @State private var showFull: Bool = false
-    @State var showBackground: Bool = true
-    var gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
-    var index:Int = 0
-    let padding:CGFloat = 30
-    var curvedLines: Bool = true
+    @Binding public var showBackground: Bool
+    public var gradient: GradientColor = .init(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
+    public var index: Int = 0
+    let padding: CGFloat = 30
+    public var curvedLines: Bool = true
+    
+    init(
+        data: ChartData,
+        currentValue: Binding<String>,
+        frame: Binding<CGRect>,
+        touchLocation: Binding<CGPoint>,
+        showIndicator: Binding<Bool>,
+        minDataValue: Binding<Double?>,
+        maxDataValue: Binding<Double?>,
+        showBackground: Binding<Bool>,
+        gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
+        index: Int = 0,
+        curvedLines: Bool = true
+    ) {
+        self.data = data
+        _currentValue = currentValue
+        _frame = frame
+        _touchLocation = touchLocation
+        _showIndicator = showIndicator
+        _minDataValue = minDataValue
+        _maxDataValue = maxDataValue
+        _showBackground = showBackground
+        self.gradient = gradient
+        self.index = index
+        self.curvedLines = curvedLines
+    }
     var stepWidth: CGFloat {
         if data.points.count < 2 {
             return 0
@@ -66,14 +94,14 @@ public struct Line: View {
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .transition(.opacity)
-                    .animation(.easeIn(duration: 1.6))
+                   // .animation(.easeIn(duration: 1.6))
             }
             self.path
                 .trim(from: 0, to: self.showFull ? 1:0)
                 .stroke(LinearGradient(gradient: gradient.getGradient(), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: 3, lineJoin: .round))
                 .rotationEffect(.degrees(180), anchor: .center)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .animation(Animation.easeOut(duration: 1.2).delay(Double(self.index)*0.4))
+                //.animation(Animation.easeOut(duration: 1.2).delay(Double(self.index)*0.4))
                 .onAppear {
                     self.showFull = true
             }
@@ -98,8 +126,17 @@ public struct Line: View {
 
 struct Line_Previews: PreviewProvider {
     static var previews: some View {
-        GeometryReader{ geometry in
-            Line(data: ChartData(points: [12,-230,10,54]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil))
+        GeometryReader { geometry in
+            Line(
+                data: ChartData(points: [12, -230, 10, 54]),
+                currentValue: .constant("$3.17"),
+                frame: .constant(geometry.frame(in: .local)),
+                touchLocation: .constant(CGPoint(x: 100, y: 12)),
+                showIndicator: .constant(true),
+                minDataValue: .constant(nil),
+                maxDataValue: .constant(nil),
+                showBackground: .constant(false)
+            )
         }.frame(width: 320, height: 160)
     }
 }

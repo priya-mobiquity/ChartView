@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct BarChartView : View {
+public struct InterlBarChartView : View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     private var data: ChartData
     public var title: String
@@ -39,7 +39,7 @@ public struct BarChartView : View {
         self.title = title
         self.legend = legend
         self.style = style
-        self.darkModeStyle = style.darkModeStyle != nil ? style.darkModeStyle! : Styles.barChartStyleOrangeDark
+        self.darkModeStyle = style.darkModeStyle ?? Styles.barChartStyleOrangeDark
         self.formSize = form!
         self.dropShadow = dropShadow!
         self.cornerImage = cornerImage
@@ -69,7 +69,7 @@ public struct BarChartView : View {
                             .font(.callout)
                             .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.accentColor : self.style.accentColor)
                             .transition(.opacity)
-                            .animation(.easeOut)
+                           // .animation(.easeOut)
                     }
                     Spacer()
                     self.cornerImage
