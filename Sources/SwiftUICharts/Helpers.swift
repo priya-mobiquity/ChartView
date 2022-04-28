@@ -167,22 +167,24 @@ public class ChartStyle {
     public var dropShadowColor: Color
     public weak var darkModeStyle: ChartStyle?
     
-    public init(backgroundColor: Color, accentColor: Color, secondGradientColor: Color, textColor: Color, legendTextColor: Color, dropShadowColor: Color){
+    public init(backgroundColor: Color, accentColor: Color, secondGradientColor: Color, textColor: Color, legendTextColor: Color, dropShadowColor: Color, darkModeStyle: ChartStyle? = nil){
         self.backgroundColor = backgroundColor
         self.accentColor = accentColor
         self.gradientColor = GradientColor(start: accentColor, end: secondGradientColor)
         self.textColor = textColor
         self.legendTextColor = legendTextColor
         self.dropShadowColor = dropShadowColor
+        self.darkModeStyle = darkModeStyle
     }
     
-    public init(backgroundColor: Color, accentColor: Color, gradientColor: GradientColor, textColor: Color, legendTextColor: Color, dropShadowColor: Color){
+    public init(backgroundColor: Color, accentColor: Color, gradientColor: GradientColor, textColor: Color, legendTextColor: Color, dropShadowColor: Color, darkModeStyle: ChartStyle? = nil){
         self.backgroundColor = backgroundColor
         self.accentColor = accentColor
         self.gradientColor = gradientColor
         self.textColor = textColor
         self.legendTextColor = legendTextColor
         self.dropShadowColor = dropShadowColor
+        self.darkModeStyle = darkModeStyle
     }
     
     public init(formSize: CGSize){

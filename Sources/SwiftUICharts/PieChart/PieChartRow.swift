@@ -9,9 +9,9 @@
 import SwiftUI
 
 public struct PieChartRow : View {
-    public var data: [Double]
-    public var backgroundColor: Color
-    public var accentColor: [Color]
+    var data: [Double]
+    var backgroundColor: Color
+    var accentColor: [Color]
     var slices: [PieSlice] {
         var tempSlices:[PieSlice] = []
         var lastEndDeg:Double = 0
@@ -26,8 +26,16 @@ public struct PieChartRow : View {
         return tempSlices
     }
     
-    @Binding public var showValue: Bool
-    @Binding public var currentValue: Double
+    @Binding var showValue: Bool
+    @Binding var currentValue: Double
+    
+    public init(data: [Double], backgroundColor: Color, accentColor: [Color], showValue: Binding<Bool>, currentValue: Binding<Double>) {
+        self.data = data
+        self.backgroundColor = backgroundColor
+        self.accentColor = accentColor
+        self.showValue = showValue
+        self.currentValue = currentValue
+    }
     
     @State private var currentTouchedIndex = -1 {
         didSet {
