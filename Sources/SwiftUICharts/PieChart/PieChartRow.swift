@@ -33,8 +33,8 @@ public struct PieChartRow : View {
         self.data = data
         self.backgroundColor = backgroundColor
         self.accentColor = accentColor
-        self.showValue = showValue
-        self.currentValue = currentValue
+        _showValue = showValue
+        _currentValue = currentValue
     }
     
     @State private var currentTouchedIndex = -1 {
