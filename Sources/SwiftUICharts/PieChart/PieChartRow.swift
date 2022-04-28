@@ -29,7 +29,7 @@ public struct PieChartRow : View {
     @Binding var showValue: Bool
     @Binding var currentValue: Double
     
-    public init(data: [Double], backgroundColor: Color, accentColor: [Color], showValue: Binding<Bool>, currentValue: Binding<Double>) {
+    public init(data: [Double], backgroundColor: Color, accentColor: [Color], showValue: Bool, currentValue: Double) {
         self.data = data
         self.backgroundColor = backgroundColor
         self.accentColor = accentColor
