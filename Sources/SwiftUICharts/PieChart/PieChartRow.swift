@@ -9,10 +9,10 @@
 import SwiftUI
 
 public struct PieChartRow : View {
-    var data: [Double]
-    var backgroundColor: Color
-    var accentColor: [Color]
-    var slices: [PieSlice] {
+    public var data: [Double]
+    public var backgroundColor: Color
+    public var accentColor: [Color]
+    public var slices: [PieSlice] {
         var tempSlices:[PieSlice] = []
         var lastEndDeg:Double = 0
         let maxValue = data.reduce(0, +)
