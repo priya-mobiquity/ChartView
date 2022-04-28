@@ -58,13 +58,24 @@ public struct GradientColors {
 }
 
 public struct Styles {
-    public static let lineChartStyleOne = ChartStyle(
+    public static let lineChartStyleOneDark = ChartStyle(
+        backgroundColor: Colors.charcoal,
+        accentColor: Colors.OrangeStart,
+        secondGradientColor: Colors.OrangeEnd,
+        textColor: Color.white,
+        legendTextColor: Color.gray,
+        dropShadowColor: Color.gray
+    )
+    
+    public static let lineChartStyleOneLight = ChartStyle(
         backgroundColor: Color.white,
         accentColor: Colors.OrangeStart,
         secondGradientColor: Colors.OrangeEnd,
         textColor: Color.black,
         legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
+        dropShadowColor: Color.gray,
+        darkModeStyle: Styles.lineChartStyleOneDark
+    )
     
     public static let barChartStyleOrangeLight = ChartStyle(
         backgroundColor: Color.white,

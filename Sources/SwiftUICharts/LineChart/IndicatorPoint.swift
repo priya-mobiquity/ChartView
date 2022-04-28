@@ -15,7 +15,7 @@ struct IndicatorPoint: View {
             Circle()
                 .fill(Colors.IndicatorKnob)
             Circle()
-                .stroke(colorScheme == .dark ? Color.charcoal : Color.white, style: StrokeStyle(lineWidth: 3))
+                .stroke(colorScheme == .dark ? Colors.charcoal : Color.white, style: StrokeStyle(lineWidth: 3))
                 .frame(width: 13, height: 13)
 
             Circle()

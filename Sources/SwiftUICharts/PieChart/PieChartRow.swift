@@ -12,7 +12,7 @@ public struct PieChartRow : View {
     public var data: [Double]
     public var backgroundColor: Color
     public var accentColor: [Color]
-    public var slices: [PieSlice] {
+    var slices: [PieSlice] {
         var tempSlices:[PieSlice] = []
         var lastEndDeg:Double = 0
         let maxValue = data.reduce(0, +)
@@ -26,8 +26,8 @@ public struct PieChartRow : View {
         return tempSlices
     }
     
-    @Binding var showValue: Bool
-    @Binding var currentValue: Double
+    @Binding public var showValue: Bool
+    @Binding public var currentValue: Double
     
     @State private var currentTouchedIndex = -1 {
         didSet {
@@ -64,16 +64,3 @@ public struct PieChartRow : View {
         }
     }
 }
-
-#if DEBUG
-struct PieChartRow_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            PieChartRow(data:[8,23,54,32,12,37,7,23,43], backgroundColor: Color(red: 252.0/255.0, green: 236.0/255.0, blue: 234.0/255.0), accentColor: Color(red: 225.0/255.0, green: 97.0/255.0, blue: 76.0/255.0), showValue: Binding.constant(false), currentValue: Binding.constant(0))
-                .frame(width: 100, height: 100)
-            PieChartRow(data:[0], backgroundColor: Color(red: 252.0/255.0, green: 236.0/255.0, blue: 234.0/255.0), accentColor: Color(red: 225.0/255.0, green: 97.0/255.0, blue: 76.0/255.0), showValue: Binding.constant(false), currentValue: Binding.constant(0))
-                .frame(width: 100, height: 100)
-        }
-    }
-}
-#endif
