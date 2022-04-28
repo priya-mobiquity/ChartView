@@ -12,6 +12,9 @@ public struct PieChartRow : View {
     public var data: [Double]
     public var backgroundColor: Color
     public var accentColor: [Color]
+    @Binding public var showValue: Bool
+    @Binding public var currentValue: Double
+    
     var slices: [PieSlice] {
         var tempSlices:[PieSlice] = []
         var lastEndDeg:Double = 0
@@ -25,9 +28,6 @@ public struct PieChartRow : View {
         }
         return tempSlices
     }
-    
-    @Binding public var showValue: Bool
-    @Binding public var currentValue: Double
     
     public init(data: [Double], backgroundColor: Color, accentColor: [Color], showValue: Binding<Bool>, currentValue: Binding<Double>) {
         self.data = data
