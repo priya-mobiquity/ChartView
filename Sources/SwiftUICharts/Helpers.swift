@@ -212,7 +212,7 @@ public class ChartStyle {
 }
 
 public class ChartData: ObservableObject, Identifiable {
-    @Published var points: [(String, Double)]
+    @Published public var points: [(String, Double)]
     var valuesGiven: Bool = false
     var ID = UUID()
 
