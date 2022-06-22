@@ -69,10 +69,10 @@ public struct MultiLineChartView: View {
     
     public var body: some View {
         ZStack(alignment: .center){
-            RoundedRectangle(cornerRadius: 20)
-                .fill(self.colorScheme == .dark ? self.darkModeStyle.backgroundColor : self.style.backgroundColor)
-                .frame(width: frame.width, height: 240, alignment: .center)
-                .shadow(radius: self.dropShadow ? 8 : 0)
+//            RoundedRectangle(cornerRadius: 20)
+//                .fill(self.colorScheme == .dark ? self.darkModeStyle.backgroundColor : self.style.backgroundColor)
+//                .frame(width: frame.width, height: 240, alignment: .center)
+//                .shadow(radius: self.dropShadow ? 8 : 0)
             VStack(alignment: .leading){
                 if !self.showIndicatorDot {
                     VStack(alignment: .leading, spacing: 8){
