@@ -91,7 +91,7 @@ public struct Line: View {
             if(self.showFull && self.showBackground){
                 self.closedPath
                     .fill(LinearGradient(
-                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Color.charcoal : Color.white]),
+                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Colors.charcoal : Color.white]),
                         startPoint: .bottom,
                         endPoint: .top
                     ))
