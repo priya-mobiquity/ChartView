@@ -90,7 +90,11 @@ public struct Line: View {
         ZStack {
             if(self.showFull && self.showBackground){
                 self.closedPath
-                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.GradientUpperBlue, .white]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [gradient.start, colorScheme == .dark ? Color.charcoal : Color.white]),
+                        startPoint: .bottom,
+                        endPoint: .top
+                    ))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .transition(.opacity)
