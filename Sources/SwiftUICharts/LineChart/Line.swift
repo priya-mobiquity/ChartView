@@ -17,6 +17,7 @@ public struct Line: View {
     @Binding public var showIndicator: Bool
     @Binding public var minDataValue: Double?
     @Binding public var maxDataValue: Double?
+    @Binding public var lineWidth: Double
     @State private var showFull: Bool = false
     @Binding public var showBackground: Bool
     public var gradient: GradientColor = .init(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
@@ -33,6 +34,7 @@ public struct Line: View {
         minDataValue: Binding<Double?>,
         maxDataValue: Binding<Double?>,
         showBackground: Binding<Bool>,
+        lineWidth: Binding<Double>,
         gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
         index: Int = 0,
         curvedLines: Bool = true
@@ -45,6 +47,7 @@ public struct Line: View {
         _minDataValue = minDataValue
         _maxDataValue = maxDataValue
         _showBackground = showBackground
+        _lineWidth = lineWidth
         self.gradient = gradient
         self.index = index
         self.curvedLines = curvedLines
@@ -102,7 +105,7 @@ public struct Line: View {
             }
             self.path
                 .trim(from: 0, to: self.showFull ? 1:0)
-                .stroke(LinearGradient(gradient: gradient.getGradient(), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: 3, lineJoin: .round))
+                .stroke(LinearGradient(gradient: gradient.getGradient(), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: lineWidth, lineJoin: .round))
                 .rotationEffect(.degrees(180), anchor: .center)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                 //.animation(Animation.easeOut(duration: 1.2).delay(Double(self.index)*0.4))
