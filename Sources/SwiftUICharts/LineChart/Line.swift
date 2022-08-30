@@ -142,7 +142,8 @@ struct Line_Previews: PreviewProvider {
                 showIndicator: .constant(true),
                 minDataValue: .constant(nil),
                 maxDataValue: .constant(nil),
-                showBackground: .constant(false)
+                showBackground: .constant(false),
+                lineWidth: .constant(3)
             )
         }.frame(width: 320, height: 160)
     }

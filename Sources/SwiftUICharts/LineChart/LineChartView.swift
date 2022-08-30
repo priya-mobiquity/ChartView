@@ -108,6 +108,7 @@ public struct LineChartView: View {
                          minDataValue: .constant(nil),
                          maxDataValue: .constant(nil),
                          showBackground: .constant(false),
+                         lineWidth: .constant(3),
                          gradient: self.style.gradientColor)
                 }
                 .frame(width: frame.width, height: frame.height)
