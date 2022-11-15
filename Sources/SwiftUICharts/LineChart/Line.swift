@@ -116,6 +116,10 @@ public struct Line: View {
                 self.showFull = false
             }
             if(self.showIndicator) {
+                Text("\(self.currentValue)")
+                    .font(.system(size: 41, weight: .bold, design: .default))
+                    .offset(x: 0, y: 30)
+                
                 IndicatorPoint()
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
