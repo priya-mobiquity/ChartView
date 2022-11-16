@@ -117,8 +117,7 @@ public struct Line: View {
             }
             if(self.showIndicator) {
                 Text("\(self.currentValue)")
-                    .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
-                    .offset(x: 0, y: 10)
+                    .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
                     .font(.system(size: 12, weight: .medium, design: .default))
                     .foregroundColor(Colors.charcoal)
                 IndicatorPoint()
