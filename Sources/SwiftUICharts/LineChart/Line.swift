@@ -117,13 +117,10 @@ public struct Line: View {
             }
             if(self.showIndicator) {
                 Text("\(self.currentValue)")
-                    .position(x: self.touchLocation.x, y: self.touchLocation.y)
-                    //.position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
+                    .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
+                    .offset(x: 0, y: 10)
                     .font(.system(size: 12, weight: .medium, design: .default))
                     .foregroundColor(Colors.charcoal)
-                
-                   // .offset(x: 0, y: -20)
-                
                 IndicatorPoint()
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
