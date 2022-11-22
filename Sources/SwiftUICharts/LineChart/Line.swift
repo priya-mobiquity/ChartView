@@ -24,6 +24,7 @@ public struct Line: View {
     public var index: Int = 0
     let padding: CGFloat = 30
     public var curvedLines: Bool = true
+    @Binding public var showText: Bool
     
     public init(
         data: ChartData,
