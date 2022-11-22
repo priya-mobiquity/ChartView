@@ -37,7 +37,8 @@ public struct Line: View {
         lineWidth: Binding<Double>,
         gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue),
         index: Int = 0,
-        curvedLines: Bool = true
+        curvedLines: Bool = true,
+        showText: Binding<Bool> = .constant(true)
     ) {
         self.data = data
         _currentValue = currentValue
@@ -51,7 +52,9 @@ public struct Line: View {
         self.gradient = gradient
         self.index = index
         self.curvedLines = curvedLines
+        _showText = showText
     }
+    
     var stepWidth: CGFloat {
         if data.points.count < 2 {
             return 0
@@ -74,7 +77,7 @@ public struct Line: View {
         if let min = min, let max = max, min != max {
             if (min <= 0){
                 return (frame.size.height-padding) / CGFloat(max - min)
-            }else{
+            } else {
                 return (frame.size.height-padding) / CGFloat(max - min)
             }
         }
@@ -115,11 +118,14 @@ public struct Line: View {
             .onDisappear {
                 self.showFull = false
             }
-            if(self.showIndicator) {
-                Text("\(self.currentValue)")
-                    .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
-                    .font(.system(size: 12, weight: .medium, design: .default))
-                    .foregroundColor(Colors.charcoal)
+            if self.showIndicator {
+                if self.showText {
+                    Text("\(self.currentValue)")
+                        .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
+                        .font(.system(size: 12, weight: .medium, design: .default))
+                        .foregroundColor(Colors.charcoal)
+                }
+                
                 IndicatorPoint()
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
