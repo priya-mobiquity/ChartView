@@ -124,7 +124,7 @@ public struct Line: View {
                     Text("\(self.currentValue)")
                         .position(CGPoint(x: self.getClosestPointOnPath(touchLocation: self.touchLocation).x, y: 0))
                         .font(.system(size: 12, weight: .medium, design: .default))
-                        .foregroundColor(Colors.charcoal)
+                        .foregroundColor(colorScheme == .dark ? Colors.white : Color.charcoal)
                 }
                 
                 IndicatorPoint()
