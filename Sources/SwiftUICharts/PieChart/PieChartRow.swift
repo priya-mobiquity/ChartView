@@ -51,7 +51,7 @@ public struct PieChartRow : View {
             ZStack{
                 ForEach(0..<self.slices.count, id: \.self) { i in
                     PieChartCell(rect: geometry.frame(in: .local), startDeg: self.slices[i].startDeg, endDeg: self.slices[i].endDeg, index: i, backgroundColor: self.backgroundColor,accentColor: self.accentColor[i])
-                        .scaleEffect(self.currentTouchedIndex == i ? 1.1 : 1)
+                        //.scaleEffect(self.currentTouchedIndex == i ? 1.1 : 1)
                        // .animation(Animation.spring())
                 }
             }
